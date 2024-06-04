@@ -1,93 +1,63 @@
 """
-file_io.py: Funciones para manejar operaciones de entrada/salida de archivos de ADN.
 
-Este módulo provee funcionalidades para leer y escribir secuencias de ADN desde y hacia
-archivos, asegurando que las secuencias sean válidas y estén bien formateadas.
+file_io.py: Funcion para leer las secuencias de un archivo en formato FASTA.
+
+Este modulo provee funcionalidades para leer secuencias de ADN desde un archivo
+en formato FASTA, asegurando que las secuencias sean validas y esten bien formateadas.
 
 Funciones:
-    read_dna_sequence(filename) - Lee una secuencia de ADN de un archivo.
-    write_dna_sequence(filename, sequence) - Escribe una secuencia de ADN en un archivo.
+   leer_fasta(archivo): Lee un archivo en formato FASTA y devuelve un diccionario 
+   con las secuencias.
     
-Ejemplos de uso están disponibles en el bloque principal del módulo.
+Ejemplos de uso estan disponibles en el bloque principal del modulo.
 
-Autores: [Tu Nombre]
+Autores: 
+    Karla Ximena Gonzalez Platas
+    Santiago Orozco Barrera
+
 Versión: 1.0
+
 """
 
-# imports
+# ===========================================================================
+# =                            Imports
+# ===========================================================================
 
-# meta-info
-__author__ = "Tu Nombre"
-__version__ = "1.0"
+import argparse # Importacion de la libreria argparse
+from Bio import SeqIO # Importacion de la funcion SeqIO del modulo Bio
 
-# global vars
-
-# functions internal
-
-# main functions
-
-def read_dna_sequence(filename):
+# ===========================================================================
+# =                            Functions
+# ===========================================================================
+def leer_fasta(archivo):
     """
-    Lee una secuencia de ADN de un archivo de texto.
+    Lee un archivo en formato FASTA y devuelve un diccionario con las secuencias.
     
-    Args:
-        filename (str): El nombre del archivo del cual leer la secuencia.
+    Parametros:
+        filename (str): Nombre del archivo en formato FASTA.
         
-    Returns:
-        str: La secuencia de ADN contenida en el archivo.
-        
-    Raises:
-        FileNotFoundError: Si el archivo especificado no se encuentra.
-        ValueError: Si el archivo está vacío o contiene caracteres no válidos.
+    Return:
+        dict: Un diccionario donde las claves son los identificadores de las secuencias
+              y los valores son las secuencias correspondientes.
     """
-    with open(filename, 'r') as file:
-        sequence = file.read().strip().upper()
-    if not sequence:
-        raise ValueError("El archivo está vacío.")
-    if any(char not in 'ACGT' for char in sequence):
-        raise ValueError("La secuencia contiene caracteres no válidos.")
-    return sequence
+    sequences = {} # Inicializar diccionario
+    with open(archivo, 'r') as file: # Abrir archivo en modo lectura
+        for record in SeqIO.parse(file, 'fasta'): # Iterar sobre las secuencias del archivo
+            # Agregar secuencia al diccionario
+            sequences[record.id] = str(record.seq)
+    return sequences
 
-def write_dna_sequence(filename, sequence):
-    """
-    Escribe una secuencia de ADN en un archivo de texto.
-    
-    Args:
-        filename (str): El nombre del archivo donde se escribirá la secuencia.
-        sequence (str): La secuencia de ADN a escribir.
-        
-    Raises:
-        IOError: Si no se puede escribir en el archivo.
-    """
-    with open(filename, 'w') as file:
-        file.write(sequence + '\n')
-
+# Bloques de prueba para demostrar la funcionalidad del modulo.
 if __name__ == "__main__":
-    # Bloques de prueba para demostrar la funcionalidad del módulo.
+    # Configurar el argumento de linea de comando para el nombre del archivo FASTA
+    parser = argparse.ArgumentParser(description="Script para leer un archivo FASTA.")
+    parser.add_argument("filename", help="Nombre del archivo FASTA")
+    args = parser.parse_args()
     
-    # Suponiendo que el archivo "example_dna.txt" contiene la secuencia válida "ATCG"
+    # Leer el archivo FASTA y manejar cualquier error
     try:
-        sequence = read_dna_sequence("example_dna.txt")
-        print(f"Secuencia leída correctamente: {sequence}")
-        
-        # Ahora escribir esta secuencia a un nuevo archivo
-        write_dna_sequence("output_dna.txt", sequence)
-        print("Secuencia escrita correctamente en 'output_dna.txt'.")
+        fasta_sequences = leer_fasta(args.filename)
+        for identifier, sequence in fasta_sequences.items():
+            print(f"ID: {identifier}, Sequence: {sequence}")
     except Exception as e:
         print(f"Error: {str(e)}")
-
-parser = argparse.ArgumentParser(description="Lee archivo de entrada y salida")
-
-parser.add_argument("input_file", type=str, help="El archivo de texto que quieres procesar.")
-args = parser.parse_args()
-
-#with open(args.input_file, "r") as f:
-    #ADN = f.read().upper() 
-#seqobj = Seq(ADN)
-for l in range(1,6):
-    new_file = "Frame_" + str(l)
-    with open(new_file, "w"):
-        pass
-
-for seq in SeqIO.parse(args.input_file, "fasta"):
-    seqobj = seq.seq
