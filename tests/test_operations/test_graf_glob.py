@@ -4,7 +4,7 @@ import unittest
 # Importar la funcion graficar_frecuencia_global del modulo graf_glob 
 from proyecto_final.operations.graf_glob import graficar_frecuencia_global  
 
-class PruebaGraficarFrecuenciaGlobal(unittest.TestCase):
+class TestGraficarFrecuenciaGlobal(unittest.TestCase):
     """
     Clase de prueba unitaria para la funcion graficar_frecuencia_global.
 
