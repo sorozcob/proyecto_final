@@ -12,11 +12,13 @@ def graficar_int(id, puntos, index):
     plt.ylabel("Frecuencia")
     plt.title(f"Grafico de la frecuencia de nucleótidos de la secuencia {id}")
 
-    ax.set_xticklabels(['10', '20', '30'])
-
     # Agregar leyenda
     plt.legend()
 
+    # Configurar las marcas de los ejes
+    plt.xticks(range(0, max(index) + 1, 10))  # Marcas en el eje x cada 10 unidades
+    plt.yticks([0.25, 0.5, 0.75, 1.0]) 
+    
     # Mostrar el grafico
     plt.grid(True)
     plt.show()
