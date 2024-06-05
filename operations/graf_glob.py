@@ -11,11 +11,8 @@ Funciones:
         (grafica de pastel) de la frecuencia global de nucleotidos calculada en 
         terminos de porcentaje.
     
-    generar_graf_glob(): Genera una grafica de pastel que muestra la frecuencia 
-        global de nucleotidos a partir de un archivo FASTA.
-    
 Ejemplos de uso:
-    generar_graf_glob():
+    graficar_frecuencia_global(frecuencia_global)
 
 Autores: 
     Karla Ximena Gonzalez Platas
@@ -30,14 +27,12 @@ Versión: 1.0
 # =                            Imports
 # ===========================================================================
 
-# Importacion de librerias, funciones y modulos
-import matplotlib.pyplot as plt # Modulo de matplotlib para graficar
-from frec_nt_global import frec_nt_global # Funcion frec_nt_global del modulo frec_nt_global
-from proyecto_final.utils.file_io import leer_fasta # Funcion del modulo file_io 
+import matplotlib.pyplot as plt # Importar modulo de matplotlib para graficar
 
 # ===========================================================================
 # =                            Functions
 # ===========================================================================
+
 def graficar_frecuencia_global(frecuencia_global):
     """
     Genera una grafica circular (grafica de pastel) de la frecuencia global de nucleotidos
@@ -61,33 +56,10 @@ def graficar_frecuencia_global(frecuencia_global):
     plt.title("Frecuencia Global de Nucleotidos")
     plt.show() # Mostrar la grafica en pantalla
 
-def generar_graf_glob():
-    """
-    Genera una grafica de pastel que muestra la frecuencia global de nucleotidos a partir de un archivo FASTA.
-    
-        Esta funcion realiza los siguientes pasos:
-            1. Lee el archivo FASTA para obtener las secuencias de ADN.
-            2. Calcula las frecuencias globales de nucleotidos a partir de las secuencias obtenidas.
-            3. Genera la grafica de pastel que muestra la frecuencia global de cada nucleotido.
-        
-        Parametros:
-            No recibe ningun parametro directamente. El archivo FASTA y la funcion para leerlo estan predefinidos dentro 
-            de la funcion.
-        
-        Return:
-            Grafica circular
-    """
-    # Leer el archivo FASTA para obtener las secuencias de ADN
-    archivo_fasta = "ruta/al/archivo.fasta"  # Ruta al archivo FASTA
-    secuencias_fasta = leer_fasta(archivo_fasta)
-
-    # Obtener las frecuencias globales de nucleótidos
-    frecuencias_por_secuencia, frecuencia_global = frec_nt_global(secuencias_fasta)
-
-    # Generar la grafica de pastel utilizando la funcion graficar_frecuencia_global
-    graficar_frecuencia_global(frecuencia_global)
-
-# Bloques de prueba para demostrar la funcionalidad del modulo.
+# Bloque de prueba para demostrar la funcionalidad del modulo
 if __name__ == "__main__":
-    generar_graf_glob()  # Generar la grafica de pastel
+    # Supongamos que ya hemos obtenido las frecuencias globales de nucleotidos
+    frecuencia_global = {'A': 30.0, 'C': 20.0, 'T': 25.0, 'G': 25.0}
+    # Llamar a la funcion para generar la grafica de pastel
+    graficar_frecuencia_global(frecuencia_global)  # Generar la grafica de pastel
 
