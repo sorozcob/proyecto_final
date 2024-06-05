@@ -10,6 +10,7 @@ Las secuencias de ADN deben estar en un archivo en formato FASTA.
 
 Uso:
     python calc_frec_nt_global.py <filename> 
+    python -m proyecto_final.scripts.calc_frec_nt_global proyecto_final/utils/archivo.fasta
 
 Argumentos:
     <filename> : nombre del archivo fasta que contiene la secuencia de ADN.

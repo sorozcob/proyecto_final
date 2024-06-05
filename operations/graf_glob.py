@@ -13,6 +13,7 @@ Funciones:
     
 Ejemplos de uso:
     graficar_frecuencia_global(frecuencia_global)
+    python -m proyecto_final.operations.graf_glob
 
 Autores: 
     Karla Ximena Gonzalez Platas
