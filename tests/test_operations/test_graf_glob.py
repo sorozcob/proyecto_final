@@ -21,7 +21,7 @@ class TestGraficarFrecuenciaGlobal(unittest.TestCase):
         """
         Configuracion inicial para las pruebas.
         """
-        self.frecuencia_global = {'A': 20.0, 'C': 20.0, 'T': 25.0, 'G': 25.0}
+        self.frecuencia_global = {'A': 30.0, 'C': 20.0, 'T': 25.0, 'G': 25.0}
 
     def prueba_etiquetas_correctas(self):
         """
