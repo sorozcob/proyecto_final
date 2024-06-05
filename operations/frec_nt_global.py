@@ -24,10 +24,10 @@ Versión: 1.0
 # ===========================================================================
 
 # Importacion de librerias, funciones y modulos
-import argparse # Libreria para manejar argumentos desde la linea de comandos
-from Bio import SeqIO # Funcion SeqIO del modulo Bio para  leer archivos
+#import argparse # Libreria para manejar argumentos desde la linea de comandos
+#from Bio import SeqIO # Funcion SeqIO del modulo Bio para  leer archivos
 from collections import Counter # Modulo de collections para contar elementos
-from proyecto_final.utils.file_io import leer_fasta # Funcion del modulo file_io 
+#from proyecto_final.utils.file_io import leer_fasta # Funcion del modulo file_io 
 
 # ===========================================================================
 # =                            Functions
