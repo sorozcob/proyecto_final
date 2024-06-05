@@ -13,8 +13,8 @@ class TestGraficarFrecuenciaGlobal(unittest.TestCase):
     de la frecuencia global de nucleotidos.
 
     Metodos:
-        test_etiquetas_correctas: Verifica que las etiquetas de la grafica sean correctas.
-        test_tamanos_correctos: Verifica que los tamanos de los segmentos de la grafica sean correctos.
+        test_labels_correctas: Verifica que las etiquetas de la grafica sean correctas.
+        test_sizes_correctos: Verifica que los tamanos de los segmentos de la grafica sean correctos.
     """
 
     def setUp(self):
