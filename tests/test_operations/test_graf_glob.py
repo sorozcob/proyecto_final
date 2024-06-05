@@ -13,8 +13,8 @@ class TestGraficarFrecuenciaGlobal(unittest.TestCase):
     de la frecuencia global de nucleotidos.
 
     Metodos:
-        prueba_etiquetas_correctas: Verifica que las etiquetas de la grafica sean correctas.
-        prueba_tamanos_correctos: Verifica que los tamanos de los segmentos de la grafica sean correctos.
+        test_etiquetas_correctas: Verifica que las etiquetas de la grafica sean correctas.
+        test_tamanos_correctos: Verifica que los tamanos de los segmentos de la grafica sean correctos.
     """
 
     def setUp(self):
@@ -23,7 +23,7 @@ class TestGraficarFrecuenciaGlobal(unittest.TestCase):
         """
         self.frecuencia_global = {'A': 30.0, 'C': 20.0, 'T': 25.0, 'G': 25.0}
 
-    def prueba_etiquetas_correctas(self):
+    def test_etiquetas_correctas(self):
         """
         Verifica que las etiquetas de la grafica sean correctas.
         """
@@ -35,7 +35,7 @@ class TestGraficarFrecuenciaGlobal(unittest.TestCase):
         # Verificar que las etiquetas generadas sean las esperadas
         self.assertEqual(etiquetas_esperadas, etiquetas_generadas)
 
-    def prueba_tamanos_correctos(self):
+    def test_tamanos_correctos(self):
         """
         Verifica que los tamanos de los segmentos de la grafica sean correctos.
         """
