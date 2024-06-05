@@ -1,24 +1,26 @@
 """
 calc_frec_nt_intervalo.py: Script que genera una gráfica de la frecuencia a lo largo de una o varias secuencias
 
-Este script lee una secuencia de ADN desde un archivo dado y calcula la frecuencia de los codones presentes.
-La secuencia de ADN debe estar en un archivo de texto y solo contener los caracteres 'A', 'C', 'G' o 'T'.
-Adicionalmete, se puede seleccionar el marco de lectura, que puede ser -3, -2, -1, 1, 2, o 3. 
+Este script lee las secuencia de DNA en un archivo Fasta y grafica la frecuencia de los 4 nucleótidos en intervalos
+de 8 nucleótidos por toda la secuencia. El archivo debe ser en formato Fasta, y la secuencia solo debe contener los
+nucleótidos 'A', 'C', 'G' o 'T'. Se puede seleccionar la secuencia a la que se quiere graficar indicando el número 
+de esta.
 
 Uso:
-    python calculate_codon_frequency.py <path_to_dna_file> [--normalize]
+    python calc_frec_nt_intervalo.py <path_to_dna_file> [-i <índice(s)>]
+    python calc_frec_nt_intervalo.py <path_to_dna_file> [--indices <índice(s)>]
 
 Argumentos:
-    <path_to_dna_file> : Ruta al archivo de texto que contiene la secuencia de ADN.
-    --normalize        : Opción para normalizar el contenido de AT excluyendo 'N's del c
+    <file>: Ruta al archivo de texto que contiene la secuencia de ADN.
+    --indices: Opción para especificar las secuencia que se quieren graficar.
 """
 
 import argparse
 import sys
-sys.path.append("/Users/soroz/Desktop/proyecto_final/utils")
-sys.path.append("/Users/soroz/Desktop/proyecto_final/operations")
-from  file_io import leer_fasta
-from  operations.frec_nt_intervalo import frecuencia_nt_intervalo
+sys.path.append("C:/Users/soroz/Desktop/proyecto_final/utils")
+sys.path.append("C:/Users/soroz/Desktop/proyecto_final/operations")
+from file_io import leer_fasta
+from frec_nt_intervalo import frecuencia_nt_intervalo
 
 class ParseIndices(argparse.Action): #argparse.Action es una clase de argparse que define cómo se manejan los argumentos de línea de comandos.
     def __call__(self, parser, namespace, values, option_string=None): # __call__ método que permite que una instancia de la clase se pueda llamar como si fuera una función.
@@ -50,19 +52,26 @@ class ParseIndices(argparse.Action): #argparse.Action es una clase de argparse q
 
 def main():
 
-    parser = argparse.ArgumentParser(description="Calcula la  ")
-    parser.add_argument("file", type=str, help="Archivo de ADN del cual leer la secuencia.")
-    parser.add_argument(
-        "-i", "--indices",
-        action=ParseIndices,
-        nargs='+',
-        default=None,
-        help='Un número (ej. 2), un intervalo (ej. 4-7), o varios índices (ej. 3,5,6)'
-    )
+    parser = argparse.ArgumentParser(description="Genera una gráfica de la frecuencia a lo largo de una o varias secuencias ")
+    parser.add_argument("file", 
+                        type=str, 
+                        help="Archivo de ADN del cual leer la secuencia.")
+    '''
+    parser.add_argument("-i", "--indices",
+                        action=ParseIndices,
+                        nargs='+',
+                        default=None,
+                        help='Un número (ej. 2), un intervalo (ej. 4-7), o varios índices (ej. 3,5,6)')
+    '''
+    parser.add_argument("-i", "--indices",
+                        type=int,
+                        nargs='+',
+                        default=None,
+                        help='Un número (ej. <2>), un intervalo (ej. 4-7), o varios índices (ej. 3,5,6)')
 
     args = parser.parse_args()
     file_path = args.file
-    nucleotides = args.nucleotides.upper
+    indices = args.indices  
 
     try:
         # Leer la secuencia del archivo especificado utilizando la función proporcionada por file_io.py
@@ -72,7 +81,7 @@ def main():
         i = 1
         for id, seq in sequences.items:
             if args.indices is None or i in args.indices:
-                frecuencia_nt_intervalo(id, seq, nucleotides)
+                frecuencia_nt_intervalo(id, seq, indices)
                 input("Next?")
             i += 1
         
@@ -80,5 +89,5 @@ def main():
     except Exception as e:
         print(f"Error: {str(e)}")
 
-if __name__ == "__main__":
-    main()
+#if __name__ == "__main__":
+    #main()
