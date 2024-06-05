@@ -24,8 +24,8 @@ Argumentos:
 import argparse
 # Importar la funcion frec_nt_global del modulo frec_nt_global
 from proyecto_final.operations.frec_nt_global import frec_nt_global
-# Importar la funcion generar_graf_glob del modulo graf_glob
-from proyecto_final.operations.graf_glob import generar_graf_glob
+# Importar la funcion graficar_frecuencia_global del modulo graf_glob
+from proyecto_final.operations.graf_glob import graficar_frecuencia_global
 # Importar la funcion leer_fasta del modulo file_io
 from proyecto_final.utils.file_io import leer_fasta
 
@@ -56,7 +56,7 @@ def main():
             print(f"{nuc}: {frecuencia:.2f}%")
         
         # Generar la grafica circular de frecuencia global
-        generar_graf_glob(frecuencia_global)
+        graficar_frecuencia_global(frecuencia_global)
     
     except Exception as e:
         print(f"Error: {str(e)}")
