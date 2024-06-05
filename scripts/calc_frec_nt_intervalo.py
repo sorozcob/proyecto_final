@@ -15,23 +15,10 @@ Argumentos:
 
 import argparse
 import sys
-#sys.path.append("")
-#sys.path.append("")
-from  utils.file_io import leer_fasta
+sys.path.append("/Users/soroz/Desktop/proyecto_final/utils")
+sys.path.append("/Users/soroz/Desktop/proyecto_final/operations")
+from  file_io import leer_fasta
 from  operations.frec_nt_intervalo import frecuencia_nt_intervalo
-
-class beta_ParseIndices(argparse.Action): #argparse.Action es una clase de argparse que define cómo se manejan los argumentos de línea de comandos.
-    def __call__(self, parser, namespace, values, option_string=None): 
-        indices = []
-        for value in values:
-            if '-' in value:
-                start, end = value.split('-')
-                indices.extend(range(int(start), int(end) + 1))
-            elif ',' in value:
-                indices.extend(int(x) for x in value.split(','))
-            else:
-                indices.append(int(value))
-        setattr(namespace, self.dest, indices) 
 
 class ParseIndices(argparse.Action): #argparse.Action es una clase de argparse que define cómo se manejan los argumentos de línea de comandos.
     def __call__(self, parser, namespace, values, option_string=None): # __call__ método que permite que una instancia de la clase se pueda llamar como si fuera una función.
