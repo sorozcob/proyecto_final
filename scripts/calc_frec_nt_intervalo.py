@@ -17,8 +17,8 @@ import argparse
 import sys
 #sys.path.append("")
 #sys.path.append("")
-from  file_io import leer_fasta
-from  frec_nt_intervalo import frecuencia_nt_intervalo
+from  utils.file_io import leer_fasta
+from  operations.frec_nt_intervalo import frecuencia_nt_intervalo
 
 class beta_ParseIndices(argparse.Action): #argparse.Action es una clase de argparse que define cómo se manejan los argumentos de línea de comandos.
     def __call__(self, parser, namespace, values, option_string=None): 
