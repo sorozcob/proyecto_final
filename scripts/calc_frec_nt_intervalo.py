@@ -17,8 +17,8 @@ Argumentos:
 
 import argparse
 import sys
-sys.path.append("C:/Users/soroz/Desktop/proyecto_final/utils")
-sys.path.append("C:/Users/soroz/Desktop/proyecto_final/operations")
+#sys.path.append("C:/Users/soroz/Desktop/proyecto_final/utils")
+#sys.path.append("C:/Users/soroz/Desktop/proyecto_final/operations")
 from file_io import leer_fasta
 from frec_nt_intervalo import frecuencia_nt_intervalo
 
