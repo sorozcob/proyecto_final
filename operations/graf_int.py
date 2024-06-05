@@ -2,10 +2,10 @@
 '''
 import matplotlib.pyplot as plt
 def graficar_int(id, puntos, index):
-    plt.plot(puntos[0][:], index, label="Frecuencia de A")
-    plt.plot(puntos[1][:], index, label="Frecuencia de T")
-    plt.plot(puntos[2][:], index, label="Frecuencia de G")
-    plt.plot(puntos[3][:], index, label="Frecuencia de C")
+    plt.plot(index, puntos[0][:], label="Frecuencia de A")
+    plt.plot(index, puntos[1][:], label="Frecuencia de T")
+    plt.plot(index, puntos[2][:], label="Frecuencia de G")
+    plt.plot(index, puntos[3][:], label="Frecuencia de C")
 
     # Agregar etiquetas y titulo
     plt.xlabel("Posición")
@@ -16,8 +16,8 @@ def graficar_int(id, puntos, index):
     plt.legend()
 
     # Configurar las marcas de los ejes
-    #plt.xticks(range(0, max(index) + 1, 10))  
-    #plt.yticks([0.25, 0.5, 0.75, 1.0]) 
+    plt.xticks(range(0, max(index) + 1, 10))  
+    plt.yticks([0.25, 0.5, 0.75, 1.0]) 
 
     # Mostrar el grafico
     plt.grid(True)
@@ -25,9 +25,10 @@ def graficar_int(id, puntos, index):
 
 if __name__ == "__main__":
     id = "> Seq1"
-    puntos = [[0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5]
-              [0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5]
-              [0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5]
-              [0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5]]
-    index = list(range(1,15))
+    puntos = [
+        [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4],
+        [0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3],
+        [0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2],
+        [0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1]]
+    index = list(range(1, 17))
     graficar_int(id, puntos, index)

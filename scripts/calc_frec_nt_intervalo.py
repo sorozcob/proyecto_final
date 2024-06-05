@@ -17,11 +17,10 @@ Argumentos:
 
 import argparse
 import sys
-#sys.path.append("C:/Users/soroz/Desktop/proyecto_final/utils")
-#sys.path.append("C:/Users/soroz/Desktop/proyecto_final/operations")
-from file_io import leer_fasta
-from frec_nt_intervalo import frecuencia_nt_intervalo
 
+from proyecto_final.utils.file_io import leer_fasta
+from proyecto_final.operations.frec_nt_intervalo import frecuencia_nt_intervalo
+'''
 class ParseIndices(argparse.Action): #argparse.Action es una clase de argparse que define cómo se manejan los argumentos de línea de comandos.
     def __call__(self, parser, namespace, values, option_string=None): # __call__ método que permite que una instancia de la clase se pueda llamar como si fuera una función.
         # self: Primer parámetro de cualquier método de instancia en una clase. self se refiere a la instancia de la clase que llama al método.
@@ -48,7 +47,7 @@ class ParseIndices(argparse.Action): #argparse.Action es una clase de argparse q
                 except ValueError:
                     raise argparse.ArgumentTypeError(f"Invalid single value: {value}")
         setattr(namespace, self.dest, indices) #Utiliza la función setattr para establecer el atributo self.dest del objeto namespace con el valor de indices. self.dest es el nombre del argumento como fue especificado en el parser
-
+'''
 
 def main():
 
@@ -71,8 +70,8 @@ def main():
 
     args = parser.parse_args()
     file_path = args.file
-    indices = args.indices  
-
+    #indices = args.indices  
+    '''
     try:
         # Leer la secuencia del archivo especificado utilizando la función proporcionada por file_io.py
         sequences = leer_fasta(file_path)
@@ -88,6 +87,23 @@ def main():
         # Mostrar el resultado al usuario
     except Exception as e:
         print(f"Error: {str(e)}")
+    '''
+    try:
+        # Leer la secuencia del archivo especificado utilizando la función proporcionada por file_io.py
+        sequences = leer_fasta(file_path)
 
-#if __name__ == "__main__":
-    #main()
+        # Calcular la frecuencia utilizando la función proporcionada por acodon_frequency.py
+        for id, seq in sequences.items():
+            if args.indices is None or i in args.indices:
+                frecuencia_nt_intervalo(id, seq)
+                input("Next?")
+            i += 1
+        
+        # Mostrar el resultado al usuario
+    except Exception as e:
+        print(f"Error: {str(e)}")
+
+
+if __name__ == "__main__":
+    
+    main()
