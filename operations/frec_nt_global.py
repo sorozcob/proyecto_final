@@ -61,15 +61,19 @@ def frec_nt_global(secuencias):
     # Devolver un tuple
     return frecuencias_por_secuencia, frecuencia_global
 
-# Bloques de prueba para demostrar la funcionalidad del modulo.
+# Bloque de prueba para demostrar la funcionalidad del modulo.
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Modulo para calcular la frecuencia de nucleotidos en un archivo FASTA.")
-    parser.add_argument("filename", help="Nombre del archivo FASTA")
-    args = parser.parse_args()
+    # Ejemplo de secuencias de ADN para probar la funcion
+    secuencias_prueba = {
+        "secuencia1": "ATCGATCGATCG",
+        "secuencia2": "GCTAGCTAGCTA",
+        "secuencia3": "ATAGCTAGCTAG",
+    }
     
     try:
-        fasta_secuencias = leer_fasta(args.filename)
-        frecuencias_por_secuencia, frecuencia_global = frec_nt_global(fasta_secuencias)
+        # Calcular las frecuencias de nucleotidos
+        frecuencias_por_secuencia, frecuencia_global = frec_nt_global(secuencias_prueba)
+        
         # Imprimir los resultados obtenidos 
         print("Frecuencias por secuencia:")
         for id, frecuencias in frecuencias_por_secuencia.items():
