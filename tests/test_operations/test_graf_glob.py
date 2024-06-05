@@ -23,29 +23,29 @@ class TestGraficarFrecuenciaGlobal(unittest.TestCase):
         """
         self.frecuencia_global = {'A': 30.0, 'C': 20.0, 'T': 25.0, 'G': 25.0}
 
-    def test_etiquetas_correctas(self):
+    def test_labels_correctas(self):
         """
         Verifica que las etiquetas de la grafica sean correctas.
         """
         # Etiquetas esperadas en la grafica
-        etiquetas_esperadas = {'A', 'C', 'T', 'G'}
+        labels_esperadas = {'A', 'C', 'T', 'G'}
         # Obtener las etiquetas generadas por la funcion
-        etiquetas_generadas = set(graficar_frecuencia_global(self.frecuencia_global).get_label()) # Set crea un conjunto de etiquetas unicas
+        labels_generadas = set(graficar_frecuencia_global(self.frecuencia_global).get_label()) # Set crea un conjunto de etiquetas unicas
 
         # Verificar que las etiquetas generadas sean las esperadas
-        self.assertEqual(etiquetas_esperadas, etiquetas_generadas)
+        self.assertEqual(labels_esperadas, labels_generadas)
 
-    def test_tamanos_correctos(self):
+    def test_sizes_correctos(self):
         """
         Verifica que los tamanos de los segmentos de la grafica sean correctos.
         """
         # Tamanos esperados de los segmentos de la grafica
-        tamanos_esperados = [30.0, 20.0, 25.0, 25.0]
+        sizes_esperados = [30.0, 20.0, 25.0, 25.0]
         # Obtener los tamanos de los segmentos generados por la funcion
-        tamanos_generados = graficar_frecuencia_global(self.frecuencia_global).get_sizes()
+        sizes_generados = graficar_frecuencia_global(self.frecuencia_global).get_sizes()
 
         # Verificar que los tamanos generados sean los esperados
-        self.assertEqual(tamanos_esperados, tamanos_generados)
+        self.assertEqual(sizes_esperados, sizes_generados)
 
 if __name__ == '__main__':
     unittest.main()
