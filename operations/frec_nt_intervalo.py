@@ -18,30 +18,22 @@ def frecuencia_nt_intervalo(id, seq):
     ''' 
     seqn = seq + "NNNNNNN"
     seqn = seqn.upper()
-    puntos = []
-    puntosA = []
-    puntosT = []
-    puntosG = []
-    puntosC = []
+    puntos = [[] for _ in range(4)]  # Inicializa puntos como una lista de listas para almacenar las frecuencias de A, T, G, C
     num_nt = len(seqn)
-    for i in range(num_nt - 7):
-            segmento = seqn[i:i+7]
-            puntosA.append(segmento.count("A")/8)
-            puntosT.append(segmento.count("T")/8)
-            puntosG.append(segmento.count("G")/8)
-            puntosT.append(segmento.count("C")/8)
-    puntos.append(puntosA)
-    puntos.append(puntosT)
-    puntos.append(puntosG)
-    puntos.append(puntosC)
+    for i in range(num_nt - 7):  # Ajustado para un segmento de longitud 8
+        segmento = seqn[i:i+8]
+        puntos[0].append(segmento.count("A") / 8)  # Frecuencia de A
+        puntos[1].append(segmento.count("T") / 8)  # Frecuencia de T
+        puntos[2].append(segmento.count("G") / 8)  # Frecuencia de G
+        puntos[3].append(segmento.count("C") / 8)  # Frecuencia de C
+    
+    index = list(range(1, len(seqn) - 6))
 
-    index = list(range(1,len(seq)))
-
+    print(puntos)
+    print(index)
     graficar_int(id, puntos, index)
-
 
 if __name__  == "__main__":
     identificador = "> Seq1"
-    secuencia = "atgctagctagctagctagca"
-    nucleotido = "a"+"t"
+    secuencia = "atgagctagctgcggcgatagcgatcgacgatcgagcgcgctagcgtacggagctatcagcagtcgatcgatgcatgctagtggctagtgtgtgatcgatgtcggctagtagtcgtagctagctagctgatcatcgatca"
     frecuencia_nt_intervalo(identificador, secuencia)
