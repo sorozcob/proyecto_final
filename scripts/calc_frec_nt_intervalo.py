@@ -11,6 +11,7 @@ secuencia a la que se quiere graficar indicando el número de esta.
 Uso:
    python calc_frec_nt_intervalo.py <path_to_dna_file> [-i <índice(s)>]
    python calc_frec_nt_intervalo.py <path_to_dna_file> [--indices <índice(s)>]
+   python -m proyecto_final.scripts.calc_frec_nt_intervalo proyecto_final/utils/archivo.fasta
 
 Argumentos:
     <file>: Ruta al archivo de texto que contiene la secuencia de ADN.

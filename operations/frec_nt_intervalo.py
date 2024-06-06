@@ -1,4 +1,5 @@
 '''
+
 frec_nt_intervalo.py: Módulo que genera una gráfica de la frecuencia a lo 
 largo de una o varias secuencias.
 
@@ -8,6 +9,16 @@ nucleótico a lo largo de la secuencia en intervalos de 8 nucleótidos.
 Funciones:
 - frecuencia_nt_intervalo(id, seq): Grafica la frecuencia de la secuencia 
 de cada nucleótido.
+
+Ejemplos de uso:
+    python frec_nt_intervalo.py
+
+Autores: 
+    Karla Ximena Gonzalez Platas
+    Santiago Orozco Barrera
+
+Versión: 1.0
+
 '''
 # ===========================================================================
 # =                            Imports
@@ -61,18 +72,14 @@ def frecuencia_nt_intervalo(id, seq):
     
     # Crear una lista de índices para cada intervalo
     index = list(range(1, len(seqn) - 6))
-
-    # Imprimir los puntos y los índices (para depuración)
-    print(puntos)
-    print(index)
     
     # Llamar a la función graficar_int para generar una gráfica de las frecuencias en intervalos y mostrarla
-    graficar_int(id, puntos, index)
+    puntos = graficar_int(id, puntos, index)
     
     return puntos 
 
 # Verificar si este script está siendo ejecutado directamente como el programa principal
 if __name__  == "__main__":
     identificador = "> Seq1"
-    secuencia = "atgagctagctgcggcgatagcgatcgacgatcgagcgcgctagcgtacggagctatcagcagtcgatcgatgcatgctagtggctagtgtgtgatcgatgtcggctagtagtcgtagctagctagctgatcatcgatca"
+    secuencia = "atgctacgtgcgcgcgattagcgtatttatatgcgcgatcggatctgattgtctaggcgagcggcagcgatcgtagctagctagctagctagctgactgcgcgcgtagctgcgatcgatcgtagccgtcga"
     frecuencia_nt_intervalo(identificador, secuencia)
