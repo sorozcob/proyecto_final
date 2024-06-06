@@ -106,20 +106,17 @@ cada nucleótido.
         5. Imprimir los resultados. 
 	
 - **Flujos alternativos**: 
-[Casos que salen del uso común del programa]
-        - Si el archivo es inexistente
-                1. El programa manda un mensaje de error
 
 	- Si el archivo está vacío
-		1. El programa manda un mensaje de error
+		El programa manda un mensaje de error
 
         - Si el archivo contiene caracteres inválidos
-                1. El programa manda un mensaje de error
+                El programa manda un mensaje de error
 
         - Argumentos inválidos de -n (distintos a ATGC)
-                1. El programa manda un mensaje de error 
+                El programa manda un mensaje de error 
 
         - En las pruebas unitarias se genera un mensaje de 
         error cuando:
-                1. Las frecuencias globales no sumen aproximadamente 100%.
-                2. Las frecuencias por secuencia no sean calculadas correctamente.
+                Las frecuencias globales no sumen aproximadamente 100%.
+                Las frecuencias por secuencia no sean calculadas correctamente.
