@@ -2,6 +2,7 @@
 frec_nt_intervalo.py: Módulo que genera una gráfica de la frecuencia a lo largo de una o varias secuencias
 
 Este módulo proporciona una función para graficar la frecuencia de cada nucleótico a lo largo de la secuencia 
+en intervalos de 
 el porcentaje de las bases de adenina (A)
 y timina (T) en una secuencia de ADN dada. Esto es útil para estudios genéticos donde
 las proporciones de AT pueden ser indicativas de ciertas características genómicas.
