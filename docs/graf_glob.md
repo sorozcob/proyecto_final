@@ -99,11 +99,10 @@ visualiza estos datos.
     6. Mostrar la gráfica en pantalla.
 	
 - **Flujos alternativos**: 
-[Casos que salen del uso común del programa]
-        Argumentos inválidos desde la línea de comandos:
-                1. El programa manda un mensaje de error.
-        - En las pruebas unitarias se genera un mensaje de 
+        1. Argumentos inválidos desde la línea de comandos:
+                - El programa manda un mensaje de error.
+        2. En las pruebas unitarias se genera un mensaje de 
         error cuando:
-                1. La gráfica de pastel no es generada con los datos proporcionados.
-                2. La salida no contiene las etiquetas y tamaños esperados.
+                - La gráfica de pastel no es generada con los datos proporcionados.
+                - La salida no contiene las etiquetas y tamaños esperados.
 
