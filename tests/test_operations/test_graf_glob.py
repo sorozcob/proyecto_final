@@ -1,9 +1,15 @@
 
-# Importar la biblioteca unittest para pruebas unitarias
-import unittest  
-# Importar la funcion graficar_frecuencia_global del modulo graf_glob 
-from proyecto_final.operations.graf_glob import graficar_frecuencia_global  
 
+# Importar la biblioteca unittest para pruebas unitarias
+import unittest
+# Importar la funcion patch del modulo unittest.mock para simular comportamientos durante las pruebas
+from unittest.mock import patch
+# Importar la clase StringIO del modulo io para manejar cadenas de texto como archivos
+from io import StringIO
+# Importar la funcion graficar_frecuencia_global del modulo graf_glob para probarla
+from proyecto_final.operations.graf_glob import graficar_frecuencia_global
+
+# Definir la clase de prueba unitaria que hereda de unittest.TestCase
 class TestGraficarFrecuenciaGlobal(unittest.TestCase):
     """
     Clase de prueba unitaria para la funcion graficar_frecuencia_global.
@@ -11,41 +17,30 @@ class TestGraficarFrecuenciaGlobal(unittest.TestCase):
     Esta clase define pruebas para verificar el correcto funcionamiento
     de la funcion graficar_frecuencia_global, que genera una grafica circular
     de la frecuencia global de nucleotidos.
-
-    Metodos:
-        test_labels_correctas: Verifica que las etiquetas de la grafica sean correctas.
-        test_sizes_correctos: Verifica que los tamanos de los segmentos de la grafica sean correctos.
     """
 
+    # Configuracion inicial para las pruebas
     def setUp(self):
-        """
-        Configuracion inicial para las pruebas.
-        """
         self.frecuencia_global = {'A': 30.0, 'C': 20.0, 'T': 25.0, 'G': 25.0}
 
-    def test_labels_correctas(self):
+    # Metodo de prueba para verificar que la grafica de pastel es generada correctamente
+    def test_grafica_generada(self):
         """
-        Verifica que las etiquetas de la grafica sean correctas.
+        Verifica que la grafica de pastel es generada con los datos proporcionados.
         """
-        # Etiquetas esperadas en la grafica
-        labels_esperadas = {'A', 'C', 'T', 'G'}
-        # Obtener las etiquetas generadas por la funcion
-        labels_generadas = set(graficar_frecuencia_global(self.frecuencia_global).get_label()) # Set crea un conjunto de etiquetas unicas
+        # Redirigir la salida estandar a un objeto StringIO para capturarla
+        stdout = StringIO()
+        with patch('sys.stdout', stdout):  # Redirigir la salida estandar al objeto StringIO
+            graficar_frecuencia_global(self.frecuencia_global)  # Generar la grafica de pastel
 
-        # Verificar que las etiquetas generadas sean las esperadas
-        self.assertEqual(labels_esperadas, labels_generadas)
+        # Obtener la salida capturada en el objeto StringIO
+        output = stdout.getvalue()
 
-    def test_sizes_correctos(self):
-        """
-        Verifica que los tamanos de los segmentos de la grafica sean correctos.
-        """
-        # Tamanos esperados de los segmentos de la grafica
-        sizes_esperados = [30.0, 20.0, 25.0, 25.0]
-        # Obtener los tamanos de los segmentos generados por la funcion
-        sizes_generados = graficar_frecuencia_global(self.frecuencia_global).get_sizes()
+        # Verificar que la salida contiene las etiquetas y tamanos esperados
+        self.assertIn("'A', 'C', 'T', 'G'", output)  # Verificar etiquetas en la salida
+        self.assertIn('30.0, 20.0, 25.0, 25.0', output)  # Verificar tamanos en la salida
 
-        # Verificar que los tamanos generados sean los esperados
-        self.assertEqual(sizes_esperados, sizes_generados)
-
+# Verificar si el script se esta ejecutando como el programa principal
 if __name__ == '__main__':
+    # Iniciar la ejecucion de las pruebas unitarias
     unittest.main()
