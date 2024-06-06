@@ -1,4 +1,5 @@
 '''
+
 calc_frec_nt_intervalo.py: Script que genera una gráfica de la frecuencia 
 a lo largo de una o varias secuencias
 
