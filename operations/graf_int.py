@@ -1,4 +1,25 @@
 '''
+
+graf_int.py: Módulo que genera una gráfica una matriz que representa la 
+frecuencia a lo largo de una o varias secuencias.
+
+Este módulo proporciona una función para graficar una matriz con la 
+frecuencia de cada nucleótico a lo largo de la secuencia en intervalos 
+de 8 nucleótidos. 
+
+Funciones:
+- graf_int(id, puntos, index): Grafica la una matriz con las frecuencias de 
+la secuencia de cada nucleótido.
+
+Ejemplos de uso:
+    python graf_int.py
+
+Autores: 
+    Karla Ximena Gonzalez Platas
+    Santiago Orozco Barrera
+
+Versión: 1.0
+
 '''
 import matplotlib.pyplot as plt
 def graficar_int(id, puntos, index):
@@ -35,8 +56,8 @@ def graficar_int(id, puntos, index):
     # Mostrar el grafico
     plt.grid(True)
     plt.show()
-    if __name__ == "__main__":
-        return puntos
+        
+    return puntos
 
 # Si se está siendo ejecutado como el programa principal
 if __name__ == "__main__":
@@ -46,5 +67,6 @@ if __name__ == "__main__":
         [0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3],
         [0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2],
         [0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1]]
+    
     index = list(range(1, 17))
     graficar_int(id, puntos, index)
