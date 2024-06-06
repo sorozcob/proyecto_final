@@ -12,42 +12,14 @@ Uso:
 
 Argumentos:
     <file>: Ruta al archivo de texto que contiene la secuencia de ADN.
-    --indices: Opción para especificar las secuencia que se quieren graficar.
+    --indices: Opción para especificar las secuencia que se quieren graficar, debe de indicarse qué secuencias separadas por un espacio.
 """
 
 import argparse
-import sys
 
 from proyecto_final.utils.file_io import leer_fasta
 from proyecto_final.operations.frec_nt_intervalo import frecuencia_nt_intervalo
-'''
-class ParseIndices(argparse.Action): #argparse.Action es una clase de argparse que define cómo se manejan los argumentos de línea de comandos.
-    def __call__(self, parser, namespace, values, option_string=None): # __call__ método que permite que una instancia de la clase se pueda llamar como si fuera una función.
-        # self: Primer parámetro de cualquier método de instancia en una clase. self se refiere a la instancia de la clase que llama al método.
-        # parser: Un objeto ArgumentParser. Es el parser que está llamando a esta acción.
-        # namespace: Un objeto que contiene los atributos que representan los argumentos de línea de comandos parseados.
-        # values: Los valores del argumento que se están procesando.
-        # option_string=None: El nombre de la opción como fue especificada en la línea de comandos. Es None si el argumento no fue especificado como una opción.
-        indices = []
-        for value in values:
-            if '-' in value:
-                try:
-                    start, end = value.split('-')
-                    indices.extend(range(int(start), int(end) + 1))
-                except ValueError:
-                    raise argparse.ArgumentTypeError(f"Invalid range value: {value}")
-            elif ',' in value:
-                try:
-                    indices.extend(int(x) for x in value.split(','))
-                except ValueError:
-                    raise argparse.ArgumentTypeError(f"Invalid list value: {value}")
-            else:
-                try:
-                    indices.append(int(value))
-                except ValueError:
-                    raise argparse.ArgumentTypeError(f"Invalid single value: {value}")
-        setattr(namespace, self.dest, indices) #Utiliza la función setattr para establecer el atributo self.dest del objeto namespace con el valor de indices. self.dest es el nombre del argumento como fue especificado en el parser
-'''
+from proyecto_final.utils.validators import validate_fasta_format
 
 def main():
 
@@ -55,13 +27,7 @@ def main():
     parser.add_argument("file", 
                         type=str, 
                         help="Archivo de ADN del cual leer la secuencia.")
-    '''
-    parser.add_argument("-i", "--indices",
-                        action=ParseIndices,
-                        nargs='+',
-                        default=None,
-                        help='Un número (ej. 2), un intervalo (ej. 4-7), o varios índices (ej. 3,5,6)')
-    '''
+
     parser.add_argument("-i", "--indices",
                         type=int,
                         nargs='+',
@@ -70,40 +36,24 @@ def main():
 
     args = parser.parse_args()
     file_path = args.file
-    #indices = args.indices  
-    '''
+    indices = args.indices  
+    
     try:
         # Leer la secuencia del archivo especificado utilizando la función proporcionada por file_io.py
+        validate_fasta_format(file_path)
         sequences = leer_fasta(file_path)
 
         # Calcular la frecuencia utilizando la función proporcionada por acodon_frequency.py
         i = 1
-        for id, seq in sequences.items:
-            if args.indices is None or i in args.indices:
-                frecuencia_nt_intervalo(id, seq, indices)
-                input("Next?")
-            i += 1
-        
-        # Mostrar el resultado al usuario
-    except Exception as e:
-        print(f"Error: {str(e)}")
-    '''
-    try:
-        # Leer la secuencia del archivo especificado utilizando la función proporcionada por file_io.py
-        sequences = leer_fasta(file_path)
-
-        # Calcular la frecuencia utilizando la función proporcionada por acodon_frequency.py
         for id, seq in sequences.items():
-            if args.indices is None or i in args.indices:
+            if args.indices is None or i in indices:
                 frecuencia_nt_intervalo(id, seq)
                 input("Next?")
             i += 1
-        
-        # Mostrar el resultado al usuario
+    
     except Exception as e:
         print(f"Error: {str(e)}")
 
 
 if __name__ == "__main__":
-    
     main()

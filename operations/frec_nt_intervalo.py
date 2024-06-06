@@ -1,13 +1,30 @@
 '''
-frec_nt_intervalo.py: Módulo para calcular el contenido de adenina y timina en secuencias de ADN.
+frec_nt_intervalo.py: Módulo que genera una gráfica de la frecuencia a lo largo de una o varias secuencias
 
-Este módulo proporciona funciones para determinar el porcentaje de las bases de adenina (A)
+Este módulo proporciona una función para graficar la frecuencia de cada nucleótico a lo largo de la secuencia 
+el porcentaje de las bases de adenina (A)
 y timina (T) en una secuencia de ADN dada. Esto es útil para estudios genéticos donde
 las proporciones de AT pueden ser indicativas de ciertas características genómicas.
 
 Funciones:
 - calculate_at_content(sequence, normalize=True): Devuelve el porcentaje de AT en la secuencia.
 '''
+"""
+calc_frec_nt_intervalo.py: Script que genera una gráfica de la frecuencia a lo largo de una o varias secuencias
+
+Este script lee las secuencia de DNA en un archivo Fasta y grafica la frecuencia de los 4 nucleótidos en intervalos
+de 8 nucleótidos por toda la secuencia. El archivo debe ser en formato Fasta, y la secuencia solo debe contener los
+nucleótidos 'A', 'C', 'G' o 'T'. Se puede seleccionar la secuencia a la que se quiere graficar indicando el número 
+de esta.
+
+Uso:
+    python calc_frec_nt_intervalo.py <path_to_dna_file> [-i <índice(s)>]
+    python calc_frec_nt_intervalo.py <path_to_dna_file> [--indices <índice(s)>]
+
+Argumentos:
+    <file>: Ruta al archivo de texto que contiene la secuencia de ADN.
+    --indices: Opción para especificar las secuencia que se quieren graficar, debe de indicarse qué secuencias separadas por un espacio.
+"""
 import sys
 sys.path.append("C:/Users/soroz/Desktop/proyecto_final/operations")
 from graf_int import graficar_int
