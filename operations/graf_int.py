@@ -2,6 +2,19 @@
 '''
 import matplotlib.pyplot as plt
 def graficar_int(id, puntos, index):
+    '''
+    Grafica los puntos que representan las frecuencias 
+
+    Args:
+        puntos (array): Los valores para x que representan las frecuencias 
+        de los nucleótidos.
+        index (array): Valores de y que va de 1 al la longitud de la secuencia
+        id (str): El identificador de la secuencia
+
+    Returns:
+        puntos (matriz): Con las frecuencias de todos los puntos 
+    '''
+    # Graficar los puntos
     plt.plot(index, puntos[0][:], label="Frecuencia de A")
     plt.plot(index, puntos[1][:], label="Frecuencia de T")
     plt.plot(index, puntos[2][:], label="Frecuencia de G")
@@ -22,7 +35,10 @@ def graficar_int(id, puntos, index):
     # Mostrar el grafico
     plt.grid(True)
     plt.show()
+    if __name__ == "__main__":
+        return puntos
 
+# Si se está siendo ejecutado como el programa principal
 if __name__ == "__main__":
     id = "> Seq1"
     puntos = [

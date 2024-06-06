@@ -1,56 +1,77 @@
 '''
-frec_nt_intervalo.py: Módulo que genera una gráfica de la frecuencia a lo largo de una o varias secuencias
+frec_nt_intervalo.py: Módulo que genera una gráfica de la frecuencia a lo 
+largo de una o varias secuencias.
 
-Este módulo proporciona una función para graficar la frecuencia de cada nucleótico a lo largo de la secuencia 
-en intervalos de 
-el porcentaje de las bases de adenina (A)
-y timina (T) en una secuencia de ADN dada. Esto es útil para estudios genéticos donde
-las proporciones de AT pueden ser indicativas de ciertas características genómicas.
+Este módulo proporciona una función para graficar la frecuencia de cada 
+nucleótico a lo largo de la secuencia en intervalos de 8 nucleótidos. 
 
 Funciones:
-- calculate_at_content(sequence, normalize=True): Devuelve el porcentaje de AT en la secuencia.
+- frecuencia_nt_intervalo(id, seq): Grafica la frecuencia de la secuencia 
+de cada nucleótido.
 '''
-"""
-calc_frec_nt_intervalo.py: Script que genera una gráfica de la frecuencia a lo largo de una o varias secuencias
-
-Este script lee las secuencia de DNA en un archivo Fasta y grafica la frecuencia de los 4 nucleótidos en intervalos
-de 8 nucleótidos por toda la secuencia. El archivo debe ser en formato Fasta, y la secuencia solo debe contener los
-nucleótidos 'A', 'C', 'G' o 'T'. Se puede seleccionar la secuencia a la que se quiere graficar indicando el número 
-de esta.
-
-Uso:
-    python calc_frec_nt_intervalo.py <path_to_dna_file> [-i <índice(s)>]
-    python calc_frec_nt_intervalo.py <path_to_dna_file> [--indices <índice(s)>]
-
-Argumentos:
-    <file>: Ruta al archivo de texto que contiene la secuencia de ADN.
-    --indices: Opción para especificar las secuencia que se quieren graficar, debe de indicarse qué secuencias separadas por un espacio.
-"""
+# ===========================================================================
+# =                            Imports
+# ===========================================================================
+# Importar el módulo sys
 import sys
+# Agregar la ruta al directorio de operaciones al módulo sys para poder importar el módulo graf_int
 sys.path.append("C:/Users/soroz/Desktop/proyecto_final/operations")
+# Importar la función graficar_int del módulo graf_int
 from graf_int import graficar_int
 
+# ===========================================================================
+# =                            Main
+# ===========================================================================
+# Definir la función frecuencia_nt_intervalo que calcula y grafica las frecuencias de las bases nitrogenadas en intervalos de una secuencia
 def frecuencia_nt_intervalo(id, seq):
-    '''
-    Devuelve la gráfica de las frecuencia de una base nitrogenada en intervalos de una secuencia 
-    ''' 
+    """
+    Calcula las frecuencias de los 4 nucleótidos y llama a la función 
+    graficar_int para graficarlos
+
+    Args:
+        seq (str): La secuencia de ADN a analizar.
+        id (str): El identificador de la secuencia
+
+    Returns:
+        puntos (matriz): Con las frecuencias de todos los puntos 
+
+    """
+    # Agregar una secuencia de 7 nucleótidos adicionales al final de la secuencia original para asegurar que todos los intervalos tengan una longitud de 8
     seqn = seq + "NNNNNNN"
+    
+    # Convertir la secuencia a mayúsculas para asegurar una comparación insensible a mayúsculas y minúsculas
     seqn = seqn.upper()
-    puntos = [[] for _ in range(4)]  # Inicializa puntos como una lista de listas para almacenar las frecuencias de A, T, G, C
+    
+    # Inicializar una lista de listas llamada "puntos" para almacenar las frecuencias de A, T, G, C en cada intervalo
+    puntos = [[] for _ in range(4)]
+    
+    # Calcular el número total de nucleótidos en la secuencia (incluyendo los nucleótidos añadidos)
     num_nt = len(seqn)
+    
+    # Iterar a través de la secuencia para calcular las frecuencias en cada intervalo
     for i in range(num_nt - 7):  # Ajustado para un segmento de longitud 8
+        # Extraer un segmento de 8 nucleótidos
         segmento = seqn[i:i+8]
+        
+        # Calcular y agregar las frecuencias normalizadas de A, T, G, C en el segmento actual a la lista "puntos"
         puntos[0].append(segmento.count("A") / 8)  # Frecuencia de A
         puntos[1].append(segmento.count("T") / 8)  # Frecuencia de T
         puntos[2].append(segmento.count("G") / 8)  # Frecuencia de G
         puntos[3].append(segmento.count("C") / 8)  # Frecuencia de C
     
+    # Crear una lista de índices para cada intervalo
     index = list(range(1, len(seqn) - 6))
 
+    # Imprimir los puntos y los índices (para depuración)
     print(puntos)
     print(index)
+    
+    # Llamar a la función graficar_int para generar una gráfica de las frecuencias en intervalos y mostrarla
     graficar_int(id, puntos, index)
+    
+    return puntos 
 
+# Verificar si este script está siendo ejecutado directamente como el programa principal
 if __name__  == "__main__":
     identificador = "> Seq1"
     secuencia = "atgagctagctgcggcgatagcgatcgacgatcgagcgcgctagcgtacggagctatcagcagtcgatcgatgcatgctagtggctagtgtgtgatcgatgtcggctagtagtcgtagctagctagctgatcatcgatca"
